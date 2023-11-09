@@ -6,7 +6,7 @@
 #    By: yothmani <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 19:09:24 by yothmani          #+#    #+#              #
-#    Updated: 2023/10/26 19:58:23 by yothmani         ###   ########.fr        #
+#    Updated: 2023/11/08 13:14:20 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM					= rm -rf
 
 # LIBFT 				= $(LIBFT_DIR)/libft.a
 
-SRC_DIR 			= src
+SRC_DIR 			= src/
 INC_DIR 			= includes
 # LIBFT_DIR 			= lib/libft
 
@@ -29,7 +29,7 @@ INC 				= -I$(INC_DIR)
 
 
 
-SRC = $(SRC_DIR)/main.c \
+SRC = $(SRC_DIR)main.c $(SRC_DIR)parse.c $(SRC_DIR)utils.c\
 
 
 
