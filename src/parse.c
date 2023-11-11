@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 15:34:17 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/08 13:32:33 by yothmani         ###   ########.fr       */
+/*   Created: 2023/10/31 15:40:25 by yothmani          #+#    #+#             */
+/*   Updated: 2023/11/10 15:13:51 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	num;
+
+	i = 0;
+	sign = 1;
+	num = 0;
+	if (!str)
+		return (0);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	while ((str[i] >= '0' && str[i] <= '9') && str[i] != '\0')
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
+	return (num * sign);
+}
 
 int	arg_check(int argc, char **argv)
 {
@@ -32,57 +60,6 @@ int	arg_check(int argc, char **argv)
 			return (-1);
 		}
 		i++;
-	}
-	return (0);
-}
-
-int	init_dinner(t_info *info, char **argv)
-{
-	info->nb_of_philos = ft_atoi(argv[1]);
-	info->time_to_die = ft_atoi(argv[2]);
-	info->time_to_eat = ft_atoi(argv[3]);
-	info->time_to_sleep = ft_atoi(argv[4]);
-	info->full_satisfaction = 0;
-	info->death = 0;
-	if (info->nb_of_philos < 2 || info->time_to_die < 0 || info->time_to_eat < 0
-		|| info->time_to_sleep < 0)
-		return (-1);
-	if (argv[5])
-	{
-		info->must_eat = ft_atoi(argv[5]);
-		if (info->must_eat < 1)
-			return (-2);
-	}
-	if (init_forks(info) || init_philos(info))
-		return (-3);
-	return (0);
-}
-
-int	init_forks(t_info *info)
-{
-	int	idx;
-
-	idx = -1;
-	while (++idx < info->nb_of_philos)
-	{
-		if (pthread_mutex_init(&info->forks[idx], NULL))
-			return (1);
-	}
-	return (0);
-}
-
-int	init_philos(t_info *info)
-{
-	int	idx;
-
-	idx = -1;
-	while (++idx < info->nb_of_philos)
-	{
-		info->philos[idx].philo_id = idx;
-		info->philos[idx].eat_count = 0;
-		info->philos[idx].left_fork = idx;
-		info->philos[idx].right_fork = (idx + 1) % info->nb_of_philos;
-		info->philos[idx].info = info;
 	}
 	return (0);
 }
