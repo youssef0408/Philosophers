@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yothmani <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 19:09:24 by yothmani          #+#    #+#              #
-#    Updated: 2023/11/13 15:05:35 by yothmani         ###   ########.fr        #
+#    Updated: 2023/11/14 15:27:25 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,34 +18,23 @@ CFLAGS 				= -Wall -Wextra -Werror
 
 RM					= rm -rf
 
-# LIBFT 				= $(LIBFT_DIR)/libft.a
-
 SRC_DIR 			= src/
 INC_DIR 			= includes
-# LIBFT_DIR 			= lib/libft
 
 INC 				= -I$(INC_DIR) 
-# -I$(LIBFT_DIR)
 
-
-
-SRC = $(SRC_DIR)main.c $(SRC_DIR)parse.c $(SRC_DIR)utils.c\
-
-
+SRC = $(SRC_DIR)main.c $(SRC_DIR)parse.c $(SRC_DIR)print.c $(SRC_DIR)time.c\
+		$(SRC_DIR)philo_state.c $(SRC_DIR)print.c $(SRC_DIR)init.c\
 
 OBJ 				= $(SRC:.c=.o)
 
-
 all:  $(NAME)
 
-
 $(NAME): $(OBJ) 
-	$(CC) $(CFLAGS) -o $@ $^ $(INC)
+	@$(CC) $(CFLAGS) -o $@ $^ $(INC)
 	@printf $(CUT)$(CUT)$(CUT)$(CUT)
 	@echo $(BOLD) $(MINT)Only philosophers accepted !
 	
-
-# $(LIBFT): # make -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC)

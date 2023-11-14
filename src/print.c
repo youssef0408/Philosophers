@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 19:09:55 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/14 15:23:31 by yothmani         ###   ########.fr       */
+/*   Created: 2023/11/14 13:01:00 by yothmani          #+#    #+#             */
+/*   Updated: 2023/11/14 15:27:51 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int main(int argc, char**argv)
+void	print_action(t_info *info, int id, char *string)
 {
-    t_info info;
-    
-   if(arg_check(argc, argv))
-        return(1);
-    init_dinner(&info, argv);
-    if(thread_launch(&info))
-    {
-        printf("\033[0mError: Threads creation failed\n");
-        return(1);
-    }
-    return(0);
+	pthread_mutex_lock(&(info->print));
+	if (!(info->death))
+		printf("%lli %i %s\n", time_stamp() - info->start_time, id + 1, string);
+	pthread_mutex_unlock(&(info->print));
+	return ;
 }

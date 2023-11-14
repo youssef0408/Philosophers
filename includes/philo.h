@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:19:28 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/14 11:30:03 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:58:21 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ typedef struct s_info
 	int				min_meals_to_eat;
 	bool			death;
 	int				full_satisfaction;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*meal_check;
+	long long		start_time;
+	pthread_mutex_t	print;
+	pthread_mutex_t	forks[250];
+	pthread_mutex_t	meal_check;
+	t_philo			philos[250];
 }					t_info;
 
 int					arg_check(int argc, char **argv);
-int					ft_isdigit(int c);
 int					ft_atoi(const char *str);
 int					init_dinner(t_info *info, char **argv);
 int					init_forks(t_info *info);
@@ -54,5 +55,11 @@ int					init_philos(t_info *info);
 long long			time_cmp(long long start_time, long long current_time);
 long long			time_stamp(void);
 void				sleep_until(long long duration, t_info *info);
-
+void				print_action(t_info *info, int id, char *string);
+void				philo_dine(t_philo *philo);
+void				*philo_thread(void *void_philosopher);
+void				philo_dine(t_philo *philo);
+void				cleanup_and_exit(t_info *info, t_philo *philo);
+int					thread_launch(t_info *info);
+void				is_dead(t_info *info, t_philo *philo);
 #endif

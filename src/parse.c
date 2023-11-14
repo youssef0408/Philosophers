@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:25 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/13 15:05:56 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:59:09 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_atoi(const char *str)
 int	arg_check(int argc, char **argv)
 {
 	int		i;
-	int 	arg_value;
+	int 	arg_value; 
 
 	i = 1;
 	if (argc != 5 && argc != 6)
