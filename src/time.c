@@ -6,16 +6,11 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:23:12 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/09 16:03:40 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:04:55 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-long long time_cmp(long long start_time, long long current_time)
-{
-    return(current_time - start_time);
-}
 
 long long	time_stamp(void)
 {
@@ -25,15 +20,20 @@ long long	time_stamp(void)
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
-void	sleep_until(long long duration, t_info *info)
+void	sleep_until(t_info *info, int time)
 {
-	long long	start_time;
-    
-	start_time = time_stamp();
-	while (!(info->death))
+	long long	current_time;
+	int			stop;
+
+	stop = 1;
+	current_time = time_stamp();
+	while(stop)
 	{
-        if(time_cmp(start_time, time_stamp()) >= duration)
-            break;
-		usleep(500);
+		pthread_mutex_lock(&info->access);
+		stop = !info->stop;
+		pthread_mutex_unlock(&info->access);
+		if(time_stamp() - current_time >= time)
+			break ;
+		usleep(100);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:09:55 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/14 15:23:31 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:06:37 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int argc, char**argv)
     
    if(arg_check(argc, argv))
         return(1);
-    init_dinner(&info, argv);
+    init_table(&info, argv);
     if(thread_launch(&info))
     {
         printf("\033[0mError: Threads creation failed\n");
