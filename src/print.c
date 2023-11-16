@@ -6,17 +6,31 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:01:00 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/14 15:27:51 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:47:04 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	print_action(t_info *info, int id, char *string)
+void	print_action(t_philo philo, char *string)
 {
-	pthread_mutex_lock(&(info->print));
-	if (!(info->death))
-		printf("%lli %i %s\n", time_stamp() - info->start_time, id + 1, string);
-	pthread_mutex_unlock(&(info->print));
-	return ;
+	pthread_mutex_lock(&philo.info->access);
+	if (!(philo.info->stop))
+		printf("%lli %i %s\n", (time_stamp() - philo.start_time), philo.philo_id
+				+ 1, string);
+	pthread_mutex_unlock(&philo.info->access);
+}
+
+int	print_death(t_info **info, int i, long check_time)
+{
+	if (check_time > (*info)->time_to_die)
+	{
+		pthread_mutex_lock(&(*info)->access);
+		printf("%lld %d %s\n", time_stamp() - (*info)->philos[i].start_time,
+				(*info)->philos[i].philo_id, "died");
+		(*info)->stop = 1;
+		pthread_mutex_unlock(&(*info)->access);
+		return (1);
+	}
+	return (0);
 }

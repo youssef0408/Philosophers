@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:19:28 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/15 15:57:24 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:50:27 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ int					init_table(t_info *info, char **argv);
 int					init_philos(t_info *info);
 long long			time_stamp(void);
 void				sleep_until(t_info *info, int time);
-void				print_action(t_info *info, int id, char *string);
+void				print_action(t_philo philo, char *string);
+int					print_death(t_info **info, int i, long check_time);
 void				philo_dine(t_philo *philo);
-void				*philo_thread(void *void_philosopher);
+void				*philo_thread(void *voided);
 void				philo_dine(t_philo *philo);
 void				cleanup_and_exit(t_info *info, t_philo *philo);
 int					start_dinner(t_info *info);
-void				is_dead(t_info *info, t_philo *philo);
+bool				is_dead(t_info *info);
 #endif

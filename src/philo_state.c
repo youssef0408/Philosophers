@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:59:06 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/15 16:55:54 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:49:54 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*philo_thread(void *voided)
 	int		stop;
 
 	philo = (t_philo *)voided;
-	print_action(philo->info, philo->philo_id, "is thinking");
+	print_action(*philo, "is thinking");
 	stop = 1;
 	while (stop)
 	{
@@ -26,14 +26,14 @@ void	*philo_thread(void *voided)
 		stop = !philo->info->stop;
 		pthread_mutex_unlock(&philo->info->access);
 		philo_dine(philo);
-		print_action(philo->info, philo->philo_id, "is sleeping");
+		print_action(*philo, "is sleeping");
 		sleep_until(philo->info, philo->info->time_to_sleep);
-		print_action(philo->info, philo->philo_id, "is thinking");
+		print_action(*philo, "is thinking");
 	}
-	return (NULL);
+	return (philo);
 }
 
-void	is_dead(t_info *info, t_philo *philo)
+bool	is_dead(t_info *info)
 {
 	int i;
 	long check;
@@ -51,14 +51,9 @@ void	is_dead(t_info *info, t_philo *philo)
 		pthread_mutex_lock(&(info->access));
 		check = time_stamp() - info->philos[i].last_meal_time;
 		pthread_mutex_unlock(&(info->access));
-		if (check > info->time_to_die)
-		{
-			pthread_mutex_lock(&info->access);
-			print_action(info, philo->philo_id, "died");
-			pthread_mutex_unlock(&info->access);
-		}
-	}
-}
+		if (print_death(&info, i, check))
+			return(true);
+	}}
 
 	void philo_dine(t_philo * philo)
 	{
@@ -80,7 +75,7 @@ void	is_dead(t_info *info, t_philo *philo)
 		pthread_mutex_unlock(&(philo->info->forks[philo->right_fork]));
 	}
 
-	int start_dinner(t_info * info)
+	int start_dinner(t_info *info)
 	{
 		int idx;
 		pthread_t *threads;
