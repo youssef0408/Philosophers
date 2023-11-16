@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:01:00 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/16 14:47:04 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:09:59 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_action(t_philo philo, char *string)
 {
 	pthread_mutex_lock(&philo.info->access);
 	if (!(philo.info->stop))
-		printf("%lli %i %s\n", (time_stamp() - philo.start_time), philo.philo_id
-				+ 1, string);
+		printf("%lli %i %s\n", (time_stamp() - philo.start_time),
+				philo.philo_id, string);
 	pthread_mutex_unlock(&philo.info->access);
 }
 

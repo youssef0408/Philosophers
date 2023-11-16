@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:34:17 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/15 15:07:58 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:37:44 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	init_philos(t_info *info)
 {
-	int	idx;
-	long long start_time;
+	int			idx;
+	long long	start_time;
 
 	idx = 0;
 	start_time = time_stamp();
 	while (idx < info->nb_of_philos)
 	{
-		if(pthread_mutex_init(&info->forks[idx], NULL))
-			return(1);
+		if (pthread_mutex_init(&info->forks[idx], NULL))
+			return (1);
 		info->philos[idx].philo_id = idx + 1;
 		info->philos[idx].left_fork = idx;
 		info->philos[idx].right_fork = (idx + 1) % info->nb_of_philos;
@@ -41,17 +41,30 @@ int	init_table(t_info *info, char **argv)
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
-	info->min_meals_to_eat = -1;
+	info->min_meals_required = -1;
 	info->stop = 0;
 	if (argv[5])
-		info->min_meals_to_eat = ft_atoi(argv[5]);
+		info->min_meals_required = ft_atoi(argv[5]);
 	info->philos = malloc(sizeof(t_philo) * info->nb_of_philos);
-	info->forks =  malloc(sizeof(pthread_mutex_t) * info->nb_of_philos);
-	if(!info->philos || !info->forks)
+	info->forks = malloc(sizeof(pthread_mutex_t) * info->nb_of_philos);
+	if (!info->philos || !info->forks)
 		return (-1);
-	if(pthread_mutex_init(&(info->access), NULL))
-		return(-1);
+	if (pthread_mutex_init(&info->access, NULL))
+		return (-2);
 	if (init_philos(info))
 		return (-3);
 	return (0);
+}
+
+void	cleanup_and_destroy_mutex(t_info *table)
+{
+	int i = 0; 
+	while (i < table->nb_of_philos)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		++i;
+	}
+	pthread_mutex_destroy(&table->access);
+	free(table->forks);
+	free(table->philos);
 }

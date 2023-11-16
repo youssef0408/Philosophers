@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:25 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/14 11:59:09 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:22:31 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,41 @@ int	ft_atoi(const char *str)
 	return (num * sign);
 }
 
+int	ft_isallnum(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < 48 || str[i] > 57)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
 int	arg_check(int argc, char **argv)
 {
-	int		i;
-	int 	arg_value; 
+	int	i;
+	int	arg_value;
 
 	i = 1;
 	if (argc != 5 && argc != 6)
 	{
-		printf("\033[0mError: Invalid number of arguments. Expected 5 or 6 arguments.\n");
+		printf("\033[0mError: "
+			"Invalid number of arguments. Expected 5 or 6 arguments.\n");
 		return (-1);
 	}
 	while (i < argc)
 	{
 		arg_value = ft_atoi(argv[i]);
-		if (arg_value <= 0 || arg_value > INT32_MAX)
+		if (arg_value <= 0 || arg_value > INT32_MAX || ft_isallnum(argv[i])
+			== -1 || argv[0] == 0)
 		{
-			printf("\033[0mError: Argument %d is not a valid positive 32-bit integer.\n", i);
-			return (-1);
+			printf("\033[0mError: "
+				"Argument %d is not a valid positive 32-bit integer.\n", i);
+			return (-3);
 		}
 		i++;
 	}

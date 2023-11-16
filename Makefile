@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 19:09:24 by yothmani          #+#    #+#              #
-#    Updated: 2023/11/14 15:27:25 by yothmani         ###   ########.fr        #
+#    Updated: 2023/11/16 17:03:01 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ norm :
 
 
 leaks:
-	leaks --atExit -- ./philo
+	@leaks --atExit -- ./philo 1 800 200 200
 
 
 clean :
