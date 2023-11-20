@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:25 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/16 16:22:31 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:33:33 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	arg_check(int argc, char **argv)
 	{
 		arg_value = ft_atoi(argv[i]);
 		if (arg_value <= 0 || arg_value > INT32_MAX || ft_isallnum(argv[i])
-			== -1 || argv[0] == 0)
+			== -1 || argv[i] == 0)
 		{
 			printf("\033[0mError: "
 				"Argument %d is not a valid positive 32-bit integer.\n", i);

@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:19:28 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 14:52:58 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:30:10 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void				sleep_until(t_info *info, int time);
 void				print_action(t_philo philo, char *string);
 int					print_death(t_info **info, int i, long check_time);
 int					philo_dine(t_philo *philo);
-void				*philo_thread(void *voided);
 void				check_status(t_info *info);
 int					start_dinner(t_info *info);
 bool				all_finished_eating(t_info *info, int meals_eaten);
