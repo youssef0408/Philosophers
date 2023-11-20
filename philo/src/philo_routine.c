@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:11 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 15:17:25 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:44:40 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,4 @@ int	start_dinner(t_info *info)
 	}
 	free(threads);
 	return (0);
-}
+} 

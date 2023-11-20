@@ -6,10 +6,12 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 19:09:24 by yothmani          #+#    #+#              #
-#    Updated: 2023/11/20 15:16:36 by yothmani         ###   ########.fr        #
+#    Updated: 2023/11/20 17:13:15 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+https://rphlr.github.io/42-Evals/Cursus/Philosophers/
 
 NAME 				= philo
 
