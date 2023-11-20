@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:34:17 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/16 16:37:44 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:14:59 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	init_table(t_info *info, char **argv)
 
 void	cleanup_and_destroy_mutex(t_info *table)
 {
-	int i = 0; 
+	int	i;
+
+	i = 0;
 	while (i < table->nb_of_philos)
 	{
 		pthread_mutex_destroy(&table->forks[i]);

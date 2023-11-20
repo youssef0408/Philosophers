@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:19:28 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/16 17:01:02 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:52:58 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ bool				all_finished_eating(t_info *info, int meals_eaten);
 bool				is_meal_completion_valid(t_info *info);
 bool				is_dead(t_info *info);
 void				cleanup_and_destroy_mutex(t_info *table);
+void				*philo_routine(void *voided);
 #endif

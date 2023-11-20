@@ -6,15 +6,16 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 19:09:24 by yothmani          #+#    #+#              #
-#    Updated: 2023/11/16 17:03:01 by yothmani         ###   ########.fr        #
+#    Updated: 2023/11/20 15:16:36 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 				= philo
 
-CC 					= gcc
-CFLAGS 				= -Wall -Wextra -Werror
+CC 					= gcc 
+CFLAGS 				= -Wall -Wextra -Werror -pthread 
+# CFLAGS 				=  -fsanitize=thread -g 
 
 RM					= rm -rf
 
@@ -24,7 +25,7 @@ INC_DIR 			= includes
 INC 				= -I$(INC_DIR) 
 
 SRC = $(SRC_DIR)main.c $(SRC_DIR)parse.c $(SRC_DIR)print.c $(SRC_DIR)time.c\
-		$(SRC_DIR)philo_state.c $(SRC_DIR)print.c $(SRC_DIR)init.c\
+$(SRC_DIR)philo_state.c $(SRC_DIR)print.c $(SRC_DIR)init.c $(SRC_DIR)philo_routine.c\
 
 OBJ 				= $(SRC:.c=.o)
 
@@ -47,7 +48,7 @@ norm :
 
 
 leaks:
-	@leaks --atExit -- ./philo 1 800 200 200
+	@leaks --atExit -- ./philo 8 800 200 200  3
 
 
 clean :

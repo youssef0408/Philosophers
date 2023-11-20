@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:23:12 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/15 15:04:55 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:26:03 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	sleep_until(t_info *info, int time)
 
 	stop = 1;
 	current_time = time_stamp();
-	while(stop)
+	while (stop)
 	{
 		pthread_mutex_lock(&info->access);
 		stop = !info->stop;
 		pthread_mutex_unlock(&info->access);
-		if(time_stamp() - current_time >= time)
+		if (time_stamp() - current_time >= time)
 			break ;
 		usleep(100);
 	}
