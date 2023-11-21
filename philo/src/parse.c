@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:40:25 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 15:33:33 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:26:59 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,21 @@ int	arg_check(int argc, char **argv)
 	int	i;
 	int	arg_value;
 
-	i = 1;
 	if (argc != 5 && argc != 6)
 	{
-		printf("\033[0mError: "
-			"Invalid number of arguments. Expected 5 or 6 arguments.\n");
+		print_error("Invalid number of arguments. Expected 5 or 6 arguments.");
 		return (-1);
 	}
+	i = 1;
 	while (i < argc)
 	{
 		arg_value = ft_atoi(argv[i]);
 		if (arg_value <= 0 || arg_value > INT32_MAX || ft_isallnum(argv[i])
-			== -1 || argv[i] == 0)
+			== -1)
 		{
-			printf("\033[0mError: "
+			printf("\033[0;31mError:\033[0m "
 				"Argument %d is not a valid positive 32-bit integer.\n", i);
-			return (-3);
+			return (-2);
 		}
 		i++;
 	}

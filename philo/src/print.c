@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:01:00 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 14:25:50 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:25:39 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ int	print_death(t_info **info, int i, long check_time)
 	{
 		pthread_mutex_lock(&(*info)->access);
 		printf("%lld %d %s\n", time_stamp() - (*info)->philos[i].start_time,
-			(*info)->philos[i].philo_id, "died");
-		(*info)->stop = 1;
+			(*info)->philos[i].philo_id, "\033[0;31mdied\033[0m");
+		(*info)->stop = true;
 		pthread_mutex_unlock(&(*info)->access);
 		return (1);
 	}
 	return (0);
+}
+
+void	print_error(char *msg)
+{
+	printf("\033[0;31mError:\033[0m %s\n", msg);
 }

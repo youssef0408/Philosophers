@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:09:55 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 14:25:02 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:26:15 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (start_dinner(&info))
 	{
-		printf("\033[0mError: Threads creation failed\n");
+		print_error("Threads creation failed");
 		return (1);
 	}
 	cleanup_and_destroy_mutex(&info);

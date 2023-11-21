@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:11 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 15:44:40 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:08:44 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	philo_dine(t_philo *philo)
 	}
 	pthread_mutex_lock(&(philo->info->forks[philo->right_fork]));
 	print_action(*philo, "has taken a fork");
-	print_action(*philo, "is eating");
+	print_action(*philo, "\033[32mis eating\033[0m");
 	pthread_mutex_lock(&(philo->info->access));
 	philo->last_meal_time = time_stamp();
 	pthread_mutex_unlock(&(philo->info->access));
@@ -83,4 +83,4 @@ int	start_dinner(t_info *info)
 	}
 	free(threads);
 	return (0);
-} 
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:19:28 by yothmani          #+#    #+#             */
-/*   Updated: 2023/11/20 15:30:10 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:21:05 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				min_meals_required;
-	int				stop;
+	bool			stop;
 	pthread_mutex_t	access;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }					t_info;
 
+void				print_error(char *msg);
 int					arg_check(int argc, char **argv);
 int					ft_atoi(const char *str);
 int					init_table(t_info *info, char **argv);
