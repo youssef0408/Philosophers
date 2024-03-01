@@ -1,4 +1,7 @@
-                      **Philosophers**
+<p align="center">
+  <strong>Philosophers</strong>
+</p>
+                       
 
 **Overview**
 
